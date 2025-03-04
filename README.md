@@ -1,4 +1,4 @@
-# Qday zkEVM Deploy
+# QDAY zkEVM Deploy
 
 ## Usage
 
