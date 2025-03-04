@@ -14,6 +14,18 @@ Run the explorer for DA and QDAY.
 make run-explorer-db run-explorer
 ```
 
+Stop the node and explorer.
+
+```bash
+make stop
+```
+
+Stop and clean the data.
+
+```bash
+make clean
+```
+
 ## Set up MetaMask
 
 ### Add DA network
