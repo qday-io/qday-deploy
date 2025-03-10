@@ -71,11 +71,7 @@ services:
           echo 'Data directory already exists, skip pg_basebackup...'
       else
           echo 'Data directory empty, do initial basebackup from master...'
-          until pg_basebackup --pgdata=/var/lib/postgresql/data \
-                              -R \
-                              --slot=replication_slot \
-                              --host=master \
-                              --port=5432
+          until pg_basebackup --pgdata=/var/lib/postgresql/data -R --slot=replication_slot --host=master --port=5432
           do
             echo 'Waiting for primary to connect...'
             sleep 1s
@@ -90,6 +86,7 @@ services:
 $ docker compose up -d
 $ docker compose logs -f
 ```
+
 ## Test
 
 - Master

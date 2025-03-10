@@ -62,3 +62,4 @@ Please use the account with path `m/44'/60'/0'/0/0` for DA and QDAY.
 ## Other documents
 
 - [PostgreSQL Replication on Docker Compose](docs/postgres.md)
+- [Step-by-step guide](docs/step-by-step/README.md)
