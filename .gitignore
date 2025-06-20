@@ -1,0 +1,7 @@
+cache
+*.ignore/
+*.log
+.idea
+out
+.env
+
