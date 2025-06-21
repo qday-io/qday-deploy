@@ -103,6 +103,12 @@
    "balance": "2200000000000000000000000000",
    "nonce": "1",
    "address": "0x9faff5dc3F23b5dEF5eB5C4dB1c48bcBBDba610a"
+  },
+    {
+   "accountName": "origin",
+   "balance": "210000000000000000000000000",
+   "nonce": "0",
+   "address": "0xD47dac7F1916054A7223A2E63C00635a64fa93A7"
   }
  ]
 }
