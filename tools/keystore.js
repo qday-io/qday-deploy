@@ -1,4 +1,4 @@
-const ethers = require("ethers");
+const { ethers, HDNodeWallet } = require("ethers");
 const fs = require("fs");
 const path = require("path");
 require("dotenv").config({ path: path.resolve(process.cwd(), ".env") });
@@ -30,13 +30,15 @@ async function main() {
     process.exit(1);
   }
 
-  // 用助记词为每个角色推导钱包并生成 keystore 文件
+  // 用助记词为每个角色推导钱包并生成 keystore 文件（ethers v6 兼容写法）
   for (let i = 0; i < arrayNames.length; i++) {
-    const wallet = ethers.Wallet.fromMnemonic(mnemonic, `m/44'/60'/0'/0/${i}`);
+    const hdPath = `m/44'/60'/0'/0/${i}`;
+    const hdNode = HDNodeWallet.fromPhrase(mnemonic, hdPath);
+    const wallet = new ethers.Wallet(hdNode.privateKey);
     console.log(arrayNames[i]);
     console.log(`Address: ${wallet.address}`);
     console.log(`PrvKey: ${wallet.privateKey}`);
-    console.log(`mnemonic: "${wallet.mnemonic.phrase}"`);
+    console.log(`mnemonic: \"${mnemonic}\"`);
     const keystoreJson = await wallet.encrypt(DEFAULT_KEYSTORE_PASSWORD);
     const filePath = path.join(keystoreDir, `${i}.keystore`);
     fs.writeFileSync(filePath, keystoreJson);

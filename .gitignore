@@ -4,4 +4,7 @@ cache
 .idea
 out
 .env
-
+node_modules/
+temp_keystore/
+package-lock.json
+package.json
