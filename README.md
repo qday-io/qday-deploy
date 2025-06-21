@@ -26,6 +26,53 @@ Stop and clean the data.
 make clean
 ```
 
+## 单独启动 L1 网络
+
+```sh
+make da-node
+```
+
+该命令会只启动 L1 网络服务。
+
+停止 L1 网络：
+```sh
+make stop-da-node
+```
+
+重启 L1 网络：
+```sh
+make restart-da-node
+```
+
+## Main node
+
+```sh
+make main-node
+```
+
+停止全节点：
+```sh
+make stop-main-node
+```
+
+## RPC node
+
+```sh
+make rpc-node
+```
+
+该命令会启动 prover、pool-db、state-db、sync、json-rpc。
+
+停止 RPC 节点：
+```sh
+make stop-rpc-node
+```
+
+重启 RPC 节点：
+```sh
+make restart-rpc-node
+```
+
 ## Set up MetaMask
 
 ### Add DA network

@@ -232,6 +232,70 @@ clean: ## Cleans up all containers and volumes
 	$(STOP)
 	sudo rm -fr data/db data/keystore/test.keystore ./data/datastreamer
 
+.PHONY: da-node
+da-node: ## Runs only the l1 network
+	$(RUNL1NETWORK)
+
+.PHONY: stop-da-node
+stop-da-node: ## Stops only the l1 network
+	$(STOPNETWORK)
+
+.PHONY: restart-da-node
+restart-da-node: stop-da-node da-node ## Restarts only the l1 network
+
+
+.PHONY: main-node
+main-node: ## Runs a full node
+	$(RUNSTATEDB)
+	$(RUNPOOLDB)
+	$(RUNEVENTDB)
+	sleep 10
+	$(RUNZKPROVER)
+	$(RUNAPPROVE)
+	sleep 3
+	$(RUNSYNC)
+	sleep 4
+	$(RUNETHTXMANAGER)
+	$(RUNSEQUENCER)
+	$(RUNSEQUENCESENDER)
+	$(RUNL2GASPRICER)
+	$(RUNAGGREGATOR)
+	$(RUNJSONRPC)
+
+.PHONY: stop-main-node
+stop-main-node: ## Stops a full node
+	$(STOPSEQUENCER)
+	$(STOPSEQUENCESENDER)
+	$(STOPJSONRPC)
+	$(STOPL2GASPRICER)
+	$(STOPAGGREGATOR)
+	$(STOPSYNC)
+	$(STOPETHTXMANAGER)
+	$(STOPAPPROVE)
+	$(STOPZKPROVER)
+	$(STOPEVENTDB)
+	$(STOPPOOLDB)
+	$(STOPSTATEDB)
+
+.PHONY: rpc-node
+rpc-node: ## Runs only the rpc node (prover, pool-db, state-db, sync, json-rpc)
+	$(RUNZKPROVER)
+	$(RUNPOOLDB)
+	$(RUNSTATEDB)
+	$(RUNSYNC)
+	$(RUNJSONRPC)
+
+.PHONY: stop-rpc-node
+stop-rpc-node: ## Stops only the rpc node (prover, pool-db, state-db, sync, json-rpc)
+	$(STOPZKPROVER)
+	$(STOPPOOLDB)
+	$(STOPSTATEDB)
+	$(STOPSYNC)
+	$(STOPJSONRPC)
+
+.PHONY: restart-rpc-node
+restart-rpc-node: stop-rpc-node rpc-node ## Restarts only the rpc node
+
 ## Help display.
 ## Pulls comments from beside commands and prints a nicely formatted
 ## display with the commands and their usage information.
