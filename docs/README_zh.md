@@ -1,7 +1,9 @@
 # Step-by-step Guide
 
 
-<strong>注意：</strong>链的运营者（Operator）需要执行全部流程,验证者（Validator）仅需要执行第4步。
+<strong>注意：</strong>
+1. 链的运营者（Operator）需要执行全部流程,验证者（Validator）仅需要执行第4步。
+2. git clone https://github.com/qday-io/qday-deploy.git
 
 ## 1. 创建 keystore by MNEMONIC
 - 读取 .env 获取 MNEMONIC
