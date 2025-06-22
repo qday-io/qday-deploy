@@ -1,6 +1,8 @@
 # Step-by-step Guide
 
-<strong>Note:</strong> The chain operator (Operator) needs to follow all steps, while a validator (Validator) only needs to follow step 4.
+<strong>Note:</strong> 
+1. The chain operator (Operator) needs to follow all steps, while a validator (Validator) only needs to follow step 4.
+2. git clone https://github.com/qday-io/qday-deploy.git
 
 ## 1. Create keystore by MNEMONIC
 - Read the MNEMONIC from the .env file
