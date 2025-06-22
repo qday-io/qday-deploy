@@ -1,4 +1,4 @@
-IsTrustedSequencer = true
+IsTrustedSequencer = false
 
 [Log]
 Environment = "development" # "production" or "development"
@@ -10,7 +10,7 @@ Outputs = ["stderr"]
 	User = "state_user"
 	Password = "state_password"
 	Name = "state_db"
-	Host = "zkevm-state-db"
+	Host = "zkevm-state-db-2"
 	Port = "5432"
 	EnableLog = false
 	MaxConns = 200
@@ -54,13 +54,13 @@ GlobalQueue = 5242880
 	User = "pool_user"
 	Password = "pool_password"
 	Name = "pool_db"
-	Host = "zkevm-pool-db"
+	Host = "zkevm-pool-db-2"
 	Port = "5432"
 	EnableLog = false
 	MaxConns = 200
 
 [Etherman]
-URL = "http://zkevm-mock-l1-network:8545"
+URL = "http://190.92.213.101:8545"
 ForkIDChunkSize = 20000
 MultiGasProvider = false
 	[Etherscan]
@@ -68,7 +68,7 @@ MultiGasProvider = false
 
 [RPC]
 Host = "0.0.0.0"
-Port = 8123
+Port = 8125
 ReadTimeout = "60s"
 WriteTimeout = "60s"
 MaxRequestsPerIPAndSecond = 5000
@@ -78,7 +78,7 @@ BatchRequestsLimit = 1000
 EnableL2SuggestedGasPricePolling = true
 	[RPC.WebSockets]
 		Enabled = true
-		Port = 8133
+		Port = 8135
 
 [Synchronizer]
 SyncInterval = "2s"
@@ -124,7 +124,7 @@ MaxTxLifetime = "3h"
 		PoolRetrievalInterval = "500ms"
 		L2ReorgRetrievalInterval = "5s"
 	[Sequencer.StreamServer]
-		Port = 6900
+		Port = 6901
 		Filename = "/datastreamer/datastream.bin"
 		Enabled = true
 
@@ -137,7 +137,7 @@ PrivateKey = {Path = "/pk/sequencer.keystore", Password = "testonly"}
 
 [Aggregator]
 Host = "0.0.0.0"
-Port = 50081
+Port = 50082
 RetryTime = "5s"
 VerifyProofInterval = "10s"
 TxProfitabilityCheckerType = "acceptall"
@@ -163,18 +163,18 @@ DefaultGasPriceWei = 1000000
 MaxGasPriceWei = 0
 
 [MTClient]
-URI  = "zkevm-prover:50061"
+URI  = "zkevm-prover-2:50061"
 
 [Executor]
-URI = "zkevm-prover:50071"
+URI = "zkevm-prover-2:50071"
 MaxGRPCMessageSize = 10000000000
 
 [Metrics]
 Host = "0.0.0.0"
-Port = 9091
+Port = 9092
 Enabled = true
 ProfilingHost = "0.0.0.0"
-ProfilingPort = 6060
+ProfilingPort = 6061
 ProfilingEnabled = false
 
 [EventLog]
@@ -182,7 +182,7 @@ ProfilingEnabled = false
 	User = "event_user"
 	Password = "event_password"
 	Name = "event_db"
-	Host = "zkevm-event-db"
+	Host = "zkevm-event-db-2"
 	Port = "5432"
 	EnableLog = false
 	MaxConns = 200
@@ -191,7 +191,7 @@ ProfilingEnabled = false
 User = "prover_user"
 Password = "prover_pass"
 Name = "prover_db"
-Host = "zkevm-state-db"
+Host = "zkevm-state-db-2"
 Port = "5432"
 EnableLog = false
-MaxConns = 200
+MaxConns = 200 

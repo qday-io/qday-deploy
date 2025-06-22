@@ -73,6 +73,68 @@ make stop-rpc-node
 make restart-rpc-node
 ```
 
+## 双 RPC 节点
+
+### RPC 节点 1
+
+启动第一个 RPC 节点：
+```sh
+make rpc-node-1
+```
+
+该命令会启动 prover、pool-db、state-db、event-db、json-rpc，使用端口 8123。
+
+停止第一个 RPC 节点：
+```sh
+make stop-rpc-node-1
+```
+
+重启第一个 RPC 节点：
+```sh
+make restart-rpc-node-1
+```
+
+### RPC 节点 2
+
+启动第二个 RPC 节点：
+```sh
+make rpc-node-2
+```
+
+该命令会启动 prover、pool-db、state-db、event-db、json-rpc，使用端口 8125。
+
+停止第二个 RPC 节点：
+```sh
+make stop-rpc-node-2
+```
+
+重启第二个 RPC 节点：
+```sh
+make restart-rpc-node-2
+```
+
+### 同时管理两个 RPC 节点
+
+同时启动两个 RPC 节点：
+```sh
+make rpc-nodes
+```
+
+同时停止两个 RPC 节点：
+```sh
+make stop-rpc-nodes
+```
+
+同时重启两个 RPC 节点：
+```sh
+make restart-rpc-nodes
+```
+
+测试两个 RPC 节点的连接性：
+```sh
+make test-rpc-nodes
+```
+
 ## Set up MetaMask
 
 ### Add DA network
@@ -95,6 +157,15 @@ Currency Symbol (optional): QDAY
 Explorer: http://localhost:4001
 ```
 
+### Add Qday network (RPC 2)
+
+```txt
+Network Name: QDay - local 2
+New RPC URL: http://localhost:8125
+Chain ID: 1001
+Currency Symbol (optional): QDAY
+Explorer: http://localhost:4001
+```
 
 ## Default accounts
 
@@ -110,3 +181,4 @@ Please use the account with path `m/44'/60'/0'/0/0` for DA and QDAY.
 
 - [PostgreSQL Replication on Docker Compose](docs/postgres.md)
 - [Step-by-step guide](docs/step-by-step/README.md)
+- [双 RPC 节点使用指南](docs/rpc-nodes-usage.md)

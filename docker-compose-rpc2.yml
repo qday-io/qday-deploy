@@ -1,0 +1,106 @@
+networks:
+  default:
+    name: zkevm-rpc2
+
+x-logging: &default-logging
+  logging:
+    driver: "json-file"
+    options:
+      max-size: "100m"
+
+services:
+  zkevm-json-rpc-2:
+    container_name: zkevm-json-rpc-2
+    image: ${QDAY_ZKEVM_NODE_IMAGE}
+    ports:
+      - 8125:8125
+      - 8135:8135 # needed if WebSockets enabled
+      - 9092:9092 # needed if metrics enabled
+    environment:
+      - ZKEVM_NODE_STATE_DB_HOST=zkevm-state-db-2
+      - ZKEVM_NODE_POOL_DB_HOST=zkevm-pool-db-2
+      - ZKEVM_NODE_MTCLIENT_URI=${ZKEVM_NODE_MTCLIENT_URI:-}
+      - ZKEVM_NODE_EXECUTOR_URI=${ZKEVM_NODE_EXECUTOR_URI:-}
+    volumes:
+      - ./data/config/rpc2.node.config.toml:/app/config.toml
+      - ./data/config/test.genesis.config.json:/app/genesis.json
+    command:
+      - "/bin/sh"
+      - "-c"
+      - "/app/zkevm-node run --network custom --custom-network-file /app/genesis.json --cfg /app/config.toml --components rpc"
+    <<: *default-logging
+
+  zkevm-prover-2:
+    container_name: zkevm-prover-2
+    image: ${QDAY_PROVER_NODE_IMAGE}
+    depends_on:
+      - zkevm-state-db-2
+    ports:
+      - 50062:50061 # MT
+      - 50072:50071 # Executor
+    volumes:
+      - ./data/config/rpc2.prover.config.json:/usr/src/app/config.json
+    command:
+      - zkProver
+      - -c
+      - /usr/src/app/config.json
+    <<: *default-logging
+
+  zkevm-state-db-2:
+    container_name: zkevm-state-db-2
+    image: postgres:17-alpine
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 1G
+    ports:
+      - 5438:5432
+    volumes:
+      - ./data/scripts/init_prover_db.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./data/db/state2:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=state_user
+      - POSTGRES_PASSWORD=state_password
+      - POSTGRES_DB=state_db
+    command: [ "postgres", "-N", "500" ]
+
+  zkevm-pool-db-2:
+    container_name: zkevm-pool-db-2
+    image: postgres:17-alpine
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 1G
+    ports:
+      - 5439:5432
+    volumes:
+      - ./data/db/pool2:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=pool_user
+      - POSTGRES_PASSWORD=pool_password
+      - POSTGRES_DB=pool_db
+    command: [ "postgres", "-N", "500" ]
+
+  zkevm-event-db-2:
+    container_name: zkevm-event-db-2
+    image: postgres:17-alpine
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 1G
+    ports:
+      - 5440:5432
+    volumes:
+      - ./data/scripts/init_event_db.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./data/db/event2:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=event_user
+      - POSTGRES_PASSWORD=event_password
+      - POSTGRES_DB=event_db
+    command: [ "postgres", "-N", "500" ] 

@@ -1,4 +1,4 @@
-IsTrustedSequencer = true
+IsTrustedSequencer = false
 
 [Log]
 Environment = "development" # "production" or "development"
@@ -60,7 +60,7 @@ GlobalQueue = 5242880
 	MaxConns = 200
 
 [Etherman]
-URL = "http://zkevm-mock-l1-network:8545"
+URL = "http://190.92.213.101:8545"
 ForkIDChunkSize = 20000
 MultiGasProvider = false
 	[Etherscan]
@@ -194,4 +194,4 @@ Name = "prover_db"
 Host = "zkevm-state-db"
 Port = "5432"
 EnableLog = false
-MaxConns = 200
+MaxConns = 200 
