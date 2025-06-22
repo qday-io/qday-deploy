@@ -109,10 +109,10 @@ DefaultGasPriceWei = 1000000
 MaxGasPriceWei = 0
 
 [MTClient]
-URI  = "http://190.92.213.101:50061"
+URI  = "190.92.213.101:50061"
 
 [Executor]
-URI = "http://190.92.213.101:50071"
+URI = "190.92.213.101:50071"
 MaxGRPCMessageSize = 10000000000
 
 [Metrics]
