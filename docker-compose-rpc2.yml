@@ -48,22 +48,6 @@ services:
       - "/app/zkevm-node run --network custom --custom-network-file /app/genesis.json --cfg /app/config.toml --components synchronizer"
     <<: *default-logging
 
-  zkevm-prover-2:
-    container_name: zkevm-prover-2
-    image: ${QDAY_PROVER_NODE_IMAGE}
-    depends_on:
-      - zkevm-state-db-2
-    ports:
-      - 50062:50061 # MT
-      - 50072:50071 # Executor
-    volumes:
-      - ./data/config/rpc2.prover.config.json:/usr/src/app/config.json
-    command:
-      - zkProver
-      - -c
-      - /usr/src/app/config.json
-    <<: *default-logging
-
   zkevm-state-db-2:
     container_name: zkevm-state-db-2
     image: postgres:17-alpine
@@ -101,24 +85,4 @@ services:
       - POSTGRES_USER=pool_user
       - POSTGRES_PASSWORD=pool_password
       - POSTGRES_DB=pool_db
-    command: [ "postgres", "-N", "500" ]
-
-  zkevm-event-db-2:
-    container_name: zkevm-event-db-2
-    image: postgres:17-alpine
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-        reservations:
-          memory: 1G
-    ports:
-      - 5440:5432
-    volumes:
-      - ./data/scripts/init_event_db.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./data/db/event2:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_USER=event_user
-      - POSTGRES_PASSWORD=event_password
-      - POSTGRES_DB=event_db
     command: [ "postgres", "-N", "500" ] 
