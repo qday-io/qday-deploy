@@ -397,6 +397,10 @@ restart-rpc-nodes: stop-rpc-nodes rpc-nodes ## Restarts both RPC nodes
 test-rpc-nodes: ## Test both RPC nodes connectivity
 	./test-rpc-nodes.sh
 
+.PHONY: fix-db-migrations
+fix-db-migrations: ## Fix database migrations for zkEVM nodes
+	./fix-db-migrations.sh
+
 ## Help display.
 ## Pulls comments from beside commands and prints a nicely formatted
 ## display with the commands and their usage information.
