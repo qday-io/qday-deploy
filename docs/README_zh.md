@@ -25,7 +25,9 @@ cp temp_keystore/1.keystore data/keystore/aggregator.keystore
 cp temp_keystore/0.keystore data/keystore/sequencer.keystore
 ```
 
-## 2. 启动 DA Node（L1 节点）
+## 2.  DA Node（L1 节点）
+
+### 编译DA Node
 - 克隆 https://github.com/qday-io/qday-zkevm-contracts.git 并切换到 release 分支
 - 按需更新配置文件：
   - 在根目录创建 .env，写入你的 mnemonic
@@ -33,9 +35,16 @@ cp temp_keystore/0.keystore data/keystore/sequencer.keystore
   - 更新 hardhat.config.js，按需添加网络
 - 在根目录执行 `start2.sh`
 - 输出目录 out 下会生成：
-  - genesis.json
   - deploy_output.json
-  - deploy_parameters_docker.json
+
+
+  **配置详情** [da-config.md](./step-by-step/da-config.md)
+
+
+###  运行DA Node
+
+  **注意：切换到qday-deploy**
+
 - 启动 DA Node：
   ```sh
   make da-node
@@ -49,11 +58,20 @@ cp temp_keystore/0.keystore data/keystore/sequencer.keystore
   make restart-da-node
   ```
 
-## 3. 启动 Main Node（主节点）
+
+## 3. Main Node（主节点）
+
+### 编译Main Node
+
 - 更新配置文件：
   - data/config/test.genesis.config.json
   - data/config/test.node.config.toml
   - data/config/test.prover.config.json
+
+  **配置详情** [main-node-config.md](./step-by-step/main-node-config.md)
+
+### 运行Main Node
+
 - 启动主节点：
   ```sh
   make main-node
@@ -65,11 +83,17 @@ cp temp_keystore/0.keystore data/keystore/sequencer.keystore
 
 > 如需重新初始化，因为系统校验 root 失败并自动更新下了
 
-## 4. 启动 RPC Node
+## 4. RPC Node
+
+### 配置参数
 - 更新配置文件：
-  - data/config/test.genesis.config.json
-  - data/config/test.node.config.toml
-  - data/config/test.prover.config.json
+  - data/config/test.genesis.config.json （**同 main node 一致，不能改变**）
+  - data/config/rpc1.node.config.toml
+  - data/config/rpc1.prover.config.json
+
+  **配置详情** [rpc-node-config.md](./step-by-step/rpc-node-config.md)
+
+### 运行RPC Node
 - 启动 RPC 节点：
   ```sh
   make rpc-node

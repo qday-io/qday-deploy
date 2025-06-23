@@ -318,20 +318,20 @@ stop-main-node: ## Stops a full node
 	$(STOPSTATEDB)
 
 .PHONY: rpc-node
-rpc-node: ## Runs only the rpc node (prover, pool-db, state-db, sync, json-rpc)
-	$(RUNZKPROVER)
-	$(RUNPOOLDB)
+rpc-node: ## Runs only the rpc node (pool-db, state-db, sync, json-rpc)
 	$(RUNSTATEDB)
+	$(RUNPOOLDB)
+	sleep 10
 	$(RUNSYNC)
+	sleep 4
 	$(RUNJSONRPC)
 
 .PHONY: stop-rpc-node
-stop-rpc-node: ## Stops only the rpc node (prover, pool-db, state-db, sync, json-rpc)
-	$(STOPZKPROVER)
+stop-rpc-node: ## Stops only the rpc node (pool-db, state-db, sync, json-rpc)
+	$(STOPJSONRPC)
+	$(STOPSYNC)
 	$(STOPPOOLDB)
 	$(STOPSTATEDB)
-	$(STOPSYNC)
-	$(STOPJSONRPC)
 
 .PHONY: restart-rpc-node
 restart-rpc-node: stop-rpc-node rpc-node ## Restarts only the rpc node
