@@ -4,7 +4,7 @@ DA Node configuration parameter details
 
 ---
 
-**deploy_parameters_docker.json**
+- ### deploy_parameters_docker.json
 
 ```jsonc
 {
@@ -73,7 +73,7 @@ DA Node configuration parameter details
 
 ---
 
-**hardhat.config.js**
+- ### hardhat.config.js
 
 Add a network configuration under `networks`. Usually, you do not need to change it. The default is `localhost` for local image build and usage.
 
@@ -96,7 +96,7 @@ localhost: {
 
 ---
 
-**deploy_output.json**
+- ### deploy_output.json
 
 ```jsonc
 {

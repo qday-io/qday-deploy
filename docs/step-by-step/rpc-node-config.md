@@ -4,7 +4,7 @@ RPC node config parameter details
 
 ---
 
-### rpc1.node.config.toml
+- ### rpc1.node.config.toml
 
 ```toml
 # Whether this node is a trusted sequencer (should be false for RPC nodes)
@@ -230,7 +230,7 @@ ProfilingEnabled = false
 
 ---
 
-### rpc1.prover.config.json
+- ### rpc1.prover.config.json
 
 ```jsonc
 {

@@ -2,7 +2,8 @@
 
 main node config 配置参数详细说明
 
-- test.genesis.config.json
+---
+- ### test.genesis.config.json
 
 ```jsonc
 {
@@ -57,9 +58,19 @@ main node config 配置参数详细说明
 }
 ```
 
-> You can initialize EOA accounts with a starting balance by adding them to the `genesis` array. For EOA, only `accountName`, `balance`, `nonce`, and `address` are required. The `balance` is specified in wei.
+1. > You can initialize EOA accounts with a starting balance by adding them to the `genesis` array. For EOA, only `accountName`, `balance`, `nonce`, and `address` are required. The `balance` is specified in wei.
 
-- test.node.config.toml
+2. >l1Config2.`chainId` Keep it the same，
+3. >l1Config2 other fields from deploy_output.json from DA node of build
+4. >`genesisBlockNumber` from deploy_output.json
+5. >`root` If you change genesis, root will automatically change
+6. >You can also initialize accounts in the genesis block
+
+
+---
+
+
+- ### test.node.config.toml
 
 ```toml
 # Whether this node is a trusted sequencer
@@ -116,8 +127,8 @@ Outputs = ["stderr"]
 
 # ...（其余字段同理，建议只保留一部分示例，或如需全部字段注释请告知）
 ```
-
-- test.prover.config.json
+---
+- ### test.prover.config.json
 
 ```jsonc
 {
