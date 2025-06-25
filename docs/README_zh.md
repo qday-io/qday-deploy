@@ -3,9 +3,23 @@
 
 <strong>注意：</strong>
 1. 链的运营者（Operator）需要执行全部流程,验证者（Validator）仅需要执行第4步。
-2. git clone https://github.com/qday-io/qday-deploy.git
 
-## 1. 创建 keystore by MNEMONIC
+## 1. 编译DA Node
+- 克隆 https://github.com/qday-io/qday-zkevm-contracts.git 并切换到 release 分支
+- 必要环境和工具：docker ,docker compose, wget,jq
+- 按需更新配置文件：
+  - 在根目录创建 .env，写入你的 mnemonic
+  - 更新 docker/scripts/deploy_parameters_docker.json
+  - 更新 hardhat.config.js，按需添加网络
+- 在根目录执行 `start2.sh`
+- 输出目录 out 下会生成：
+  - deploy_output.json
+
+
+  **配置详情** [da-config.md](./step-by-step/da-config.md)
+
+## 2. 创建 keystore by MNEMONIC
+- git clone https://github.com/qday-io/qday-deploy.git
 - 读取 .env 获取 MNEMONIC
 - 通过 CLI 创建 aggregator.keystore、sequencer.keystore
 - 推荐使用脚本自动生成 keystore 文件：
@@ -25,24 +39,7 @@ cp temp_keystore/1.keystore data/keystore/aggregator.keystore
 cp temp_keystore/0.keystore data/keystore/sequencer.keystore
 ```
 
-## 2.  DA Node（L1 节点）
-
-### 编译DA Node
-- 克隆 https://github.com/qday-io/qday-zkevm-contracts.git 并切换到 release 分支
-- 必要环境和工具：docker ,docker compose, wget,jq
-- 按需更新配置文件：
-  - 在根目录创建 .env，写入你的 mnemonic
-  - 更新 docker/scripts/deploy_parameters_docker.json
-  - 更新 hardhat.config.js，按需添加网络
-- 在根目录执行 `start2.sh`
-- 输出目录 out 下会生成：
-  - deploy_output.json
-
-
-  **配置详情** [da-config.md](./step-by-step/da-config.md)
-
-
-###  运行DA Node
+## 3.  运行DA Node（L1 节点）
 
   **注意：切换到qday-deploy**
 
@@ -60,7 +57,7 @@ cp temp_keystore/0.keystore data/keystore/sequencer.keystore
   ```
 
 
-## 3. Main Node（主节点）
+## 4. Main Node（主节点）
 
 ### 编译Main Node
 
@@ -84,7 +81,7 @@ cp temp_keystore/0.keystore data/keystore/sequencer.keystore
 
 > 如需重新初始化，因为系统校验 root 失败并自动更新下了
 
-## 4. RPC Node
+## 5. RPC Node
 
 ### 配置参数
 - 更新配置文件：

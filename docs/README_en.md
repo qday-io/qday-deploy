@@ -2,9 +2,22 @@
 
 <strong>Note:</strong>
 1. The chain operator (Operator) should follow all steps; a validator (Validator) only needs to perform step 4.
-2. git clone https://github.com/qday-io/qday-deploy.git
 
-## 1. Create keystore by MNEMONIC
+## 1. Build DA Node
+- Clone https://github.com/qday-io/qday-zkevm-contracts.git and switch to the release branch
+- Required environment and tools: docker, docker compose, wget, jq
+- Update configuration files as needed:
+  - Create a .env file in the root directory and add your mnemonic
+  - Update docker/scripts/deploy_parameters_docker.json
+  - Update hardhat.config.js to add networks as needed
+- Run `start2.sh` in the root directory
+- The out directory will contain:
+  - deploy_output.json
+
+  **Configuration details:** [da-config.md](./step-by-step/da-config.md)
+
+## 2. Create keystore by MNEMONIC
+- git clone https://github.com/qday-io/qday-deploy.git
 - Read the MNEMONIC from the .env file
 - Use the CLI to create aggregator.keystore and sequencer.keystore
 - It is recommended to use the script to automatically generate keystore files:
@@ -24,22 +37,7 @@ cp temp_keystore/1.keystore data/keystore/aggregator.keystore
 cp temp_keystore/0.keystore data/keystore/sequencer.keystore
 ```
 
-## 2. DA Node (L1 Node)
-
-### Build DA Node
-- Clone https://github.com/qday-io/qday-zkevm-contracts.git and switch to the release branch
-- Required environment and tools: docker, docker compose, wget, jq
-- Update configuration files as needed:
-  - Create a .env file in the root directory and add your mnemonic
-  - Update docker/scripts/deploy_parameters_docker.json
-  - Update hardhat.config.js to add networks as needed
-- Run `start2.sh` in the root directory
-- The out directory will contain:
-  - deploy_output.json
-
-  **Configuration details:** [da-config.md](./step-by-step/da-config.md)
-
-### Run DA Node
+## 3. Run DA Node (L1 Node)
 
   **Note: Switch to qday-deploy directory**
 
@@ -56,7 +54,7 @@ cp temp_keystore/0.keystore data/keystore/sequencer.keystore
   make restart-da-node
   ```
 
-## 3. Main Node
+## 4. Main Node
 
 ### Build Main Node
 
@@ -80,7 +78,7 @@ cp temp_keystore/0.keystore data/keystore/sequencer.keystore
 
 > If you need to reinitialize, the system will automatically update if root validation fails.
 
-## 4. RPC Node
+## 5. RPC Node
 
 ### Configuration
 - Update configuration files:
