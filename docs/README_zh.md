@@ -4,9 +4,11 @@
 <strong>注意：</strong>
 1. 链的运营者（Operator）需要执行全部流程,验证者（Validator）仅需要执行第4步。
 
+
 ## 1. 编译DA Node
 - 克隆 https://github.com/qday-io/qday-zkevm-contracts.git 并切换到 release 分支
 - 必要环境和工具：docker ,docker compose, wget,jq
+- 安装node环境：apt install nodejs npm -y
 - 按需更新配置文件：
   - 在根目录创建 .env，写入你的 mnemonic
   - 更新 docker/scripts/deploy_parameters_docker.json
