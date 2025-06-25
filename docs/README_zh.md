@@ -110,4 +110,18 @@ cp temp_keystore/0.keystore data/keystore/sequencer.keystore
 > 如需重新初始化，因为系统校验 root 失败并自动更新下了
 
 
+### 6. 检查PRC节点
+
+```
+curl http://localhost:8123 \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc": "2.0", "method": "eth_chainId", "params": [], "id": 1}'
+```
+
+正常响应：
+```
+  {"jsonrpc":"2.0","id":1,"result":"0x3e9"}
+```
+
 

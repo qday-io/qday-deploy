@@ -104,3 +104,17 @@ cp temp_keystore/0.keystore data/keystore/sequencer.keystore
   ```
 
 > If you need to reinitialize, the system will automatically update if root validation fails. 
+
+### Check RPC Node
+
+```
+curl http://localhost:8123 \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc": "2.0", "method": "eth_chainId", "params": [], "id": 1}'
+```
+
+Expected response:
+```
+  {"jsonrpc":"2.0","id":1,"result":"0x3e9"}
+``` 
