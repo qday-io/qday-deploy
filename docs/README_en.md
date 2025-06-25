@@ -105,7 +105,7 @@ cp temp_keystore/0.keystore data/keystore/sequencer.keystore
 
 > If you need to reinitialize, the system will automatically update if root validation fails. 
 
-### Check RPC Node
+### 6. Check RPC Node
 
 ```
 curl http://localhost:8123 \
