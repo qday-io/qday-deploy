@@ -29,6 +29,7 @@ cp temp_keystore/0.keystore data/keystore/sequencer.keystore
 
 ### 编译DA Node
 - 克隆 https://github.com/qday-io/qday-zkevm-contracts.git 并切换到 release 分支
+- 必要环境和工具：docker ,docker compose, wget,jq
 - 按需更新配置文件：
   - 在根目录创建 .env，写入你的 mnemonic
   - 更新 docker/scripts/deploy_parameters_docker.json

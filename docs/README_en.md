@@ -28,6 +28,7 @@ cp temp_keystore/0.keystore data/keystore/sequencer.keystore
 
 ### Build DA Node
 - Clone https://github.com/qday-io/qday-zkevm-contracts.git and switch to the release branch
+- Required environment and tools: docker, docker compose, wget, jq
 - Update configuration files as needed:
   - Create a .env file in the root directory and add your mnemonic
   - Update docker/scripts/deploy_parameters_docker.json
