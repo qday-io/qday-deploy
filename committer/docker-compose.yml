@@ -1,0 +1,52 @@
+version: "3"
+
+services:
+  mysql1:
+    container_name: mysql1
+    image: mysql:8.4.0-oraclelinux9
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+    ports:
+      - "3366:3306"
+    volumes:
+      - ./mysql.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./mysql1/datadir:/var/lib/mysql
+
+  node1:
+    depends_on:
+      - mysql1
+    environment:
+      LOG_LEVEL: "info"
+      LOG_FORMAT: "console"
+      MYSQL_DATA_SOURCE: "root:root@tcp(mysql1:3306)/abe_committer?charset=utf8mb4&parseTime=True&loc=Local&multiStatements=true"
+      MYSQL_MAX_IDLE_CONNS: "10"
+      MYSQL_MAX_OPEN_CONNS: "20"
+      MYSQL_CONN_MAX_LIFETIME: "3600"
+      RPC_URL: ${RPC_URL}
+      BLOCKCHAIN: ${BLOCKCHAIN}
+      INIT_BLOCK_NUMBER: ${INIT_BLOCK_NUMBER}
+      INIT_BLOCK_HASH: ${INIT_BLOCK_HASH}
+      POLYGON_ZKEVM_ADDRESS: ${POLYGON_ZKEVM_ADDRESS}
+      PROPOSAL_BATCHES_LIMITNUM: ${PROPOSAL_BATCHES_LIMITNUM}
+      INIT_PROPOSAL_ID: ${INIT_PROPOSAL_ID}
+      B2NODE_PRIVATE_KEY: ${B2NODE_PRIVATE_KEY}
+      B2NODE_ADDRESS: ${B2NODE_ADDRESS}
+      B2NODE_CHAIN_ID: ${B2NODE_CHAIN_ID}
+      B2NODE_GRPC_HOST: ${B2NODE_GRPC_HOST}
+      B2NODE_GRPC_PORT: ${B2NODE_GRPC_PORT}
+      B2NODE_RPC_URL: ${B2NODE_RPC_URL}
+      B2NODE_COIN_DENOM: ${B2NODE_COIN_DENOM}
+      ENDPOINT: ${ENDPOINT}
+      RPCENDPOINT: ${RPCENDPOINT}
+      USERNAME: ${USERNAME}
+      PASSWORD: ${PASSWORD}
+      APPID: ${APPID}
+      REQUEST_SIGNATURE: ${REQUEST_SIGNATURE}
+      USERID: ${USERID}
+      FROM: ${FROM}
+      RECIPIENT: ${RECIPIENT}
+      PRIVATE_KEY: ${PRIVATE_KEY}
+      AUTHTOKEN: ${AUTHTOKEN}
+
+    image: ${ETHERMINT_IMAGE}
+

@@ -118,3 +118,99 @@ Expected response:
 ```
   {"jsonrpc":"2.0","id":1,"result":"0x3e9"}
 ``` 
+
+## 8. Deploy indexer
+
+**Switch to the indexer directory**
+
+### 1. Directory Structure
+
+- `docker-compose.yml`: Compose file defining indexer and its database.
+- `env-example`: Environment variable template. Copy to `.env` and modify as needed before deployment.
+- `abi.json`: Contract ABI file for indexer service.
+
+### 2. Requirements
+
+- Docker and Docker Compose
+- Recommended host memory ≥ 2GB
+
+### 3. Environment Variables
+
+Copy `env-example` to `.env` and modify as needed. Key variables:
+- `INDEXER_DATABASE_SOURCE`: Postgres connection string (default points to the pg service in this compose).
+- `BITCOIN_*`, `BITCOIN_BRIDGE_*`: Bitcoin network and bridge contract configs.
+- See `env-example` for more details.
+
+### 4. Data Volumes
+
+- `./db/postgres/datadir`: Postgres data directory.
+- `./abi.json`: ABI file, mapped to `/app/abi.json` in the container.
+- `./.env`: Environment file, mapped to `/app/.env` in the container.
+
+### 5. Port Mapping
+
+- `5432:5432`: Postgres database
+- `9090:9090`, `9091:9091`: indexer service
+
+### 6. Start Service
+
+In the `indexer` directory:
+
+```bash
+cp env-example .env
+# If you have init SQL, put it in docker-entrypoint-initdb.d
+
+docker-compose up -d
+```
+
+### 7. Check
+TODO
+
+**Configuration details:** [indexer-config.md](./step-by-step/indexer-config.md)
+
+
+## 9. Deploy committer
+
+**Switch to the committer directory**
+
+### 1. Directory Structure
+
+- `docker-compose.yml`: Compose file defining committer and its database.
+- `env.example`: Environment variable template. Copy to `.env` and modify as needed before deployment.
+- `mysql.sql`: MySQL init script, auto-imported for DB structure.
+
+### 2. Requirements
+
+- Docker and Docker Compose
+- Recommended host memory ≥ 2GB
+
+### 3. Environment Variables
+
+Copy `env.example` to `.env` and modify as needed. Key variables:
+- `ETHERMINT_IMAGE`: committer service image (default points to official repo).
+- Other variables for chain, node, account, API, etc. See `env.example` for details.
+
+### 4. Data Volumes
+
+- `./mysql1/datadir`: MySQL data directory (auto-created by docker-compose).
+- `./mysql.sql`: DB init script, auto-imported.
+
+### 5. Port Mapping
+
+- `3366:3306`: MySQL database
+
+### 6. Start Service
+
+In the `committer` directory:
+
+```bash
+cp env.example .env
+# To customize DB structure, edit mysql.sql
+
+docker-compose up -d
+```
+
+### 7. Check
+TODO
+
+**Configuration details:** [committer-config.md](./step-by-step/committer-config.md) 
