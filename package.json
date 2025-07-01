@@ -1,0 +1,28 @@
+{
+  "name": "qday-deploy",
+  "version": "1.0.0",
+  "description": "Run the node, which includes the DA node and the QDAY node.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qday-io/qday-deploy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/qday-io/qday-deploy/issues"
+  },
+  "homepage": "https://github.com/qday-io/qday-deploy#readme",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "ethers": "^5.8.0"
+  }
+}

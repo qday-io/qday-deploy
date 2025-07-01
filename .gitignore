@@ -7,5 +7,4 @@ out
 node_modules/
 temp_keystore/
 package-lock.json
-package.json
 data/db/
