@@ -6,7 +6,7 @@
 ## 1. Build DA Node
 - Clone https://github.com/qday-io/qday-zkevm-contracts.git and switch to the release branch
 - Required environment and tools: docker, docker compose, wget, jq
-- install node：apt install nodejs npm -y
+- Install node: apt install nodejs npm -y
 - Update configuration files as needed:
   - Create a .env file in the root directory and add your mnemonic
   - Update docker/scripts/deploy_parameters_docker.json
@@ -19,6 +19,8 @@
 
 ## 2. Create keystore by MNEMONIC
 - git clone https://github.com/qday-io/qday-deploy.git
+- Install node: apt install nodejs npm -y
+- Install dependency: npm install ethers@^5.7.2
 - Read the MNEMONIC from the .env file
 - Use the CLI to create aggregator.keystore and sequencer.keystore
 - It is recommended to use the script to automatically generate keystore files:
@@ -34,8 +36,8 @@ Select two of the generated keystore files, rename them to aggregator.keystore a
 Example commands:
 ```sh
 [ -d data/keystore ] || mkdir -p data/keystore
-cp temp_keystore/1.keystore data/keystore/aggregator.keystore
-cp temp_keystore/0.keystore data/keystore/sequencer.keystore
+cp temp_keystore/1.keystore data/keystore/sequencer.keystore
+cp temp_keystore/2.keystore data/keystore/aggregator.keystore
 ```
 
 ## 3. Run DA Node (L1 Node)
@@ -103,9 +105,9 @@ cp temp_keystore/0.keystore data/keystore/sequencer.keystore
   make restart-rpc-node
   ```
 
-> If you need to reinitialize, the system will automatically update if root validation fails. 
+> If you need to reinitialize, the system will automatically update if root validation fails.
 
-### 6. Check RPC Node
+## 6. Check RPC Node
 
 ```
 curl http://localhost:8123 \
@@ -117,7 +119,58 @@ curl http://localhost:8123 \
 Expected response:
 ```
   {"jsonrpc":"2.0","id":1,"result":"0x3e9"}
-``` 
+```
+
+## 7. Deploy wAbel Contract
+
+- Clone https://github.com/qday-io/qday-contracts.git and switch to the release branch
+- Install required dependencies and tools
+
+```
+# Install Rust (if not already installed)
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source ~/.cargo/env
+
+# Install Foundry
+cargo install --git https://github.com/foundry-rs/foundry.git foundry-cli anvil --bins --locked
+```
+
+- Create .env and update
+
+```
+ cp env-example .env
+```
+
+- Run shell
+
+```jsonc
+
+Usage: ./deploy.sh [OPTIONS]
+
+Options:
+  -l, --local     Deploy to local network (requires anvil running)
+  -m, --mainnet   Deploy to Ethereum mainnet (QDay)
+  -s, --simulate  Simulate deployment (no transaction sent)
+  -v, --verify    Verify contract after deployment (mainnet only)
+  -h, --help      Show this help message
+
+Examples:
+  ./deploy.sh --local                    # Local deployment
+  ./deploy.sh --mainnet                  # Mainnet deployment
+  ./deploy.sh --simulate                 # Simulate deployment
+  ./deploy.sh --mainnet --verify         # Mainnet deployment and verify
+
+Environment Variables:
+  PRIVATE_KEY     Deployer's private key (required)
+  ETH_RPC_URL     Ethereum RPC URL (required for mainnet)
+  ETHERSCAN_API_KEY Etherscan API Key (required for verification)
+```
+
+- out.txt
+
+ 1. Deployment process info, including errors
+ 2. Deployment result info, such as contract address, network info, etc.
+
 
 ## 8. Deploy indexer
 
@@ -209,7 +262,6 @@ cp env.example .env
 
 docker-compose up -d
 ```
-
 ### 7. Check
 TODO
 

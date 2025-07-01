@@ -22,6 +22,8 @@
 
 ## 2. 创建 keystore by MNEMONIC
 - git clone https://github.com/qday-io/qday-deploy.git
+- 安装node环境：apt install nodejs npm -y 
+- 安装依赖：npm install ethers@^5.7.2
 - 读取 .env 获取 MNEMONIC
 - 通过 CLI 创建 aggregator.keystore、sequencer.keystore
 - 推荐使用脚本自动生成 keystore 文件：
@@ -37,8 +39,8 @@
 命令示例：
 ```sh
 [ -d data/keystore ] || mkdir -p data/keystore
-cp temp_keystore/1.keystore data/keystore/aggregator.keystore
-cp temp_keystore/0.keystore data/keystore/sequencer.keystore
+cp temp_keystore/1.keystore data/keystore/sequencer.keystore
+cp temp_keystore/2.keystore data/keystore/aggregator.keystore
 ```
 
 ## 3.  运行DA Node（L1 节点）
