@@ -31,7 +31,7 @@
 
 The keystore files will be generated and saved in the `temp_keystore` directory at the project root. This directory is created automatically.
 
-Select two of the generated keystore files, rename them to aggregator.keystore and sequencer.keystore, and place them in the data/keystore directory.
+Select two of the generated keystore files, rename them to aggregator.keystore and sequencer.keystore, and place them in the data/keystore directory (**make sure they correspond to deploy_output.json**).
 
 Example commands:
 ```sh

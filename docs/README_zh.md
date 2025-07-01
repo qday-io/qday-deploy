@@ -34,7 +34,7 @@
   
 现在，keystore 文件会被生成并保存在项目根目录下的 `temp_keystore` 目录中。该目录会自动创建，无需手动操作。
 
-根据生成的 keystore 文件，选取其中两个，分别重命名为 aggregator.keystore 和 sequencer.keystore，并放入 data/keystore 目录下。
+根据生成的 keystore 文件，选取其中两个，分别重命名为 aggregator.keystore 和 sequencer.keystore，并放入 data/keystore 目录下(**一定和 deploy_output.json 对应**)。
 
 命令示例：
 ```sh

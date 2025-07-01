@@ -36,7 +36,6 @@ services:
     environment:
       - ZKEVM_NODE_STATE_DB_HOST=zkevm-state-db
       - ZKEVM_NODE_POOL_DB_HOST=zkevm-pool-db
-      - ZKEVM_NODE_SEQUENCER_SENDER_ADDRESS=0x5465477Ce81D92Eba5eE9608402470FdAbcF34a0
       - ZKEVM_NODE_MTCLIENT_URI=${ZKEVM_NODE_MTCLIENT_URI:-}
       - ZKEVM_NODE_EXECUTOR_URI=${ZKEVM_NODE_EXECUTOR_URI:-}
     volumes:
@@ -76,7 +75,6 @@ services:
       - 9093:9091 # needed if metrics enabled
     environment:
       - ZKEVM_NODE_STATE_DB_HOST=zkevm-state-db
-      - ZKEVM_NODE_AGGREGATOR_SENDER_ADDRESS=0x3c376e0711bBa2e41Cb2Ccc322F6134f94d3cf54
     volumes:
       - ./data/config/test.node.config.toml:/app/config.toml
       - ./data/config/test.genesis.config.json:/app/genesis.json
