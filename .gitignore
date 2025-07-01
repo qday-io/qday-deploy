@@ -8,3 +8,5 @@ node_modules/
 temp_keystore/
 package-lock.json
 data/db/
+.DS_Store
+data/.DS_Store
