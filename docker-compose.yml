@@ -201,14 +201,14 @@ services:
     image: ${QDAY_L1_NODE_IMAGE}
     ports:
       - 8545:8545
-      - 19090:19090
+      - 9090:9090
     command:
       - ethermintd
       - start
       - --json-rpc.address
       - 0.0.0.0:8545
       - --grpc.address
-      - 0.0.0.0:19090
+      - 0.0.0.0:9090
       - --json-rpc.api
       - "eth,debug,net,txpool,personal,web3"
     <<: *default-logging

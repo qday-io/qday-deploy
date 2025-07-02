@@ -8,96 +8,102 @@
 
 | 字段名 | 类型 | 默认值 | 说明 | 配置建议 |
 |--------|------|--------|------|----------|
-| `RPC_URL` | string | `https://polygon-rpc.com` | 区块链 RPC 节点地址 | 配置为实际可用的 RPC 节点 |
-| `BLOCKCHAIN` | string | `polygon` | 区块链网络名称 | 根据实际网络修改（如：polygon, ethereum） |
-| `INIT_BLOCK_NUMBER` | int | `12345678` | 初始同步区块号 | 配置为开始同步的区块高度 |
-| `INIT_BLOCK_HASH` | string | `0xabcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890` | 初始区块哈希 | 配置为对应区块的哈希值 |
-| `POLYGON_ZKEVM_ADDRESS` | string | `0x1234567890abcdef1234567890abcdef12345678` | Polygon zkEVM 合约地址 | 配置为实际的 zkEVM 合约地址 |
+| `RPC_URL` | string | `http://190.92.213.101:8545` | 区块链 RPC 节点地址 | 配置为实际可用的 RPC 节点 |
+| `BLOCKCHAIN` | string | `da-node` | 区块链网络名称 | 根据实际网络修改（如：polygon, ethereum） |
+| `INIT_BLOCK_NUMBER` | int | `1` | 初始同步区块号 | 配置为开始同步的区块高度 |
+| `INIT_BLOCK_HASH` | string | `0x1db9fbef276c30cc9fdfba2a21d7cc4dd760fd2e76b8906571c6f56a706624bc` | 初始区块哈希 | 配置为对应区块的哈希值 |
+| `POLYGON_ZKEVM_ADDRESS` | string | `0x59C123c2901245F3A38E009Eb341d34CC4609a8E` | Polygon zkEVM 合约地址 | 配置为实际的 zkEVM 合约地址 |
 
 ### 2. 提案和批次配置
 
 | 字段名 | 类型 | 默认值 | 说明 | 配置建议 |
 |--------|------|--------|------|----------|
-| `PROPOSAL_BATCHES_LIMITNUM` | int | `10` | 提案批次限制数量 | 根据业务需求调整 |
+| `PROPOSAL_BATCHES_LIMITNUM` | int | `2` | 提案批次限制数量 | 根据业务需求调整 |
 | `INIT_PROPOSAL_ID` | int | `1` | 初始提案 ID | 配置为开始处理的提案 ID |
 
 ### 3. B2Node 节点配置
 
 | 字段名 | 类型 | 默认值 | 说明 | 配置建议 |
 |--------|------|--------|------|----------|
-| `B2NODE_PRIVATE_KEY` | string | `your_b2node_private_key` | B2Node 私钥 | 配置为实际的私钥（注意安全） |
-| `B2NODE_ADDRESS` | string | `0xabcdefabcdefabcdefabcdefabcdefabcdefabcd` | B2Node 地址 | 配置为对应的公钥地址 |
-| `B2NODE_CHAIN_ID` | int | `80001` | B2Node 链 ID | 根据实际网络配置 |
-| `B2NODE_GRPC_HOST` | string | `localhost` | B2Node gRPC 主机地址 | 配置为实际的 gRPC 服务地址 |
+| `B2NODE_PRIVATE_KEY` | string | `2ee789a68207020b45607f5adb71933de0946baebbaaab74af7cbd69c8a90573` | B2Node 私钥 | 配置为实际的私钥（注意安全） |
+| `B2NODE_ADDRESS` | string | `ethm17nhkv58y35ye5jtjafd5zndtsmsenz7nlxh60c` | B2Node 地址 | 配置为对应的公钥地址 |
+| `B2NODE_CHAIN_ID` | int/string | `ethermint_9000-1` | B2Node 链 ID | 根据实际网络配置 |
+| `B2NODE_GRPC_HOST` | string | `190.92.213.101` | B2Node gRPC 主机地址 | 配置为实际的 gRPC 服务地址 |
 | `B2NODE_GRPC_PORT` | int | `9090` | B2Node gRPC 端口 | 配置为实际的 gRPC 端口 |
-| `B2NODE_RPC_URL` | string | `http://localhost:8545` | B2Node RPC URL | 配置为实际的 RPC 地址 |
-| `B2NODE_COIN_DENOM` | string | `abecoin` | B2Node 代币名称 | 配置为实际的代币符号 |
+| `B2NODE_RPC_URL` | string | `http://190.92.213.101:9090` | B2Node RPC URL | 配置为实际的 RPC 地址 |
+| `B2NODE_COIN_DENOM` | string | `aphoton` | B2Node 代币名称 | 配置为实际的代币符号 |
+
+
+- build B2NODE_ADDRESS
+```
+//Enter the da node container service
+ethermintd keys show mykey --keyring-backend test -a
+ethm17nhkv58y35ye5jtjafd5zndtsmsenz7nlxh60c
+```
+
+- build B2NODE_PRIVATE_KEY
+```
+//Enter the da node container service
+ethermintd keys export mykey --unarmored-hex --unsafe --keyring-backend test
+
+2ee789a68207020b45607f5adb71933de0946baebbaaab74af7cbd69c8a90573
+```
+
 
 ### 4. API 和认证配置
 
 | 字段名 | 类型 | 默认值 | 说明 | 配置建议 |
 |--------|------|--------|------|----------|
-| `ENDPOINT` | string | `https://api.example.com` | API 端点地址 | 配置为实际的 API 服务地址 |
-| `RPCENDPOINT` | string | `https://rpc.example.com` | RPC 端点地址 | 配置为实际的 RPC 服务地址 |
-| `USERNAME` | string | `admin` | API 用户名 | 配置为实际的用户名 |
-| `PASSWORD` | string | `yourpassword` | API 密码 | 配置为实际的密码（注意安全） |
-| `APPID` | string | `yourappid` | 应用 ID | 配置为实际的应用标识 |
-| `REQUEST_SIGNATURE` | string | `your_signature` | 请求签名 | 配置为实际的签名密钥 |
-| `USERID` | string | `youruserid` | 用户 ID | 配置为实际的用户标识 |
+| `ENDPOINT` | string | `https://testnet-snode.pqabelian.io/v1/single-account` | API 端点地址 | 配置为实际的 API 服务地址 |
+| `RPCENDPOINT` | string | `https://testnet-rpc-00.pqabelian.io` | RPC 端点地址 | 配置为实际的 RPC 服务地址 |
+| `USERNAME` | string | `J8y0OnkS2wx9XEgUlW5MqtoRDAQ=` | API 用户名 | 配置为实际的用户名 |
+| `PASSWORD` | string | `ULlXc/ZMJ375cn6VuSbtU+Y3KGQ=` | API 密码 | 配置为实际的密码（注意安全） |
+| `APPID` | string | `cce71078` | 应用 ID | 配置为实际的应用标识 |
+| `REQUEST_SIGNATURE` | string | `0x338i3jejjd` | 请求签名 | 配置为实际的签名密钥 |
+| `AUTHTOKEN` | string | `cce71078669ded3517d961a2d57eb440` | 认证令牌 | 配置为实际的认证令牌 |
 
 ### 5. 交易配置
 
 | 字段名 | 类型 | 默认值 | 说明 | 配置建议 |
 |--------|------|--------|------|----------|
-| `FROM` | string | `0xabcdefabcdefabcdefabcdefabcdefabcdefabcd` | 发送方地址 | 配置为实际的发送地址 |
-| `RECIPIENT` | string | `0x1234567890abcdef1234567890abcdef12345678` | 接收方地址 | 配置为实际的接收地址 |
-| `PRIVATE_KEY` | string | `your_private_key` | 交易私钥 | 配置为实际的私钥（注意安全） |
-| `AUTHTOKEN` | string | `your_auth_token` | 认证令牌 | 配置为实际的认证令牌 |
+| `FROM` | string | `abe3238c46312425ffffd1250f3a7024ff31ad8d15fc6eeb5ad38962115640e59e94e8da112a82192d90e66539eea6427c9fb052b27ae534c8f2835b8d9c12adc1ac` | 发送方地址 | 配置为实际的发送地址 |
+| `RECIPIENT` | string | `abe338491ef250a530f6b1a771d45ae168f81d6a430f20623849e448b870f0f95e13f12ba51bff83497480db944567750e3cf555cd9811db95b848ca93d45c1448d0` | 接收方地址 | 配置为实际的接收地址 |
+| `PRIVATE_KEY` | string | `000000009efa88a8019f647299217d808c652b96c28f7fe8887830fdc8b1803002806a61e61fa689e9f4c99340336d3ea6904053026e3f15eebf09bcd36c85f9fbc186bf74023558625a2672f53602aee7a2d359cad4a451e1e047f3873750e3b59f32ca7a45e864473454f23b675e23f8e24c55323245d12f7516653119a92b0fc4cf387a6948f261dda683c2e56b1c1a0b85509663dfcdac87461fbce44a80530339debd2b6e62d3324909f7643281b4b75b1fdadc398d2801512b0b537c33a99ab1e1e1d7e336d694175dcf9d924cd2402f7b2b168d8dca557ce6b0371d281085fe8a8ebf5a643fda56b47dd057f4710150310f03b26f5d6c48860890790c4ef5978f0378a23192feb2d0527e73813281999ebf25e7aed1d1e8187fff36d9cfd614e2047b94b2e68b8894d4d0ad482a12b93991465d73c0294d9d1cdb7e9fa20df4169aa1a006ce6e39491c0913c6e50654be0bdccb619d07b4b4b0fe323458baafbcc7460676c497cc51d08fb36fb76260615acbab8d27e307c650ae127ac42e7be4c5439af88c8b8197b3726dc4b2a377db6160186c1481f79395fc82931d556678a02f6420534f38cbd7a0a4a1eea83f1e20fd87918b8f54cc2978681c57a6c9f3a445b29483141bfdc4e29c399a907bb8c41cf4e83e9cb6e508de65511a631e51c00f87ce8155439dd1361a5f78836befaa9f345386f75b941f14812894cb8c059bed886d5f7909ca8e60441986cb84262dd1f67bd7ac633c0ce3b267334931f3e8a03acc84e574c6443b6f7b84dcb5c82921be7e9fa2e26f78a39f2e11a6d27d900c37fcac2d23952da734a907bf07bf66c0c4d4231e857f3ba2b7c5c63664052c1597658f919759e557fd6ade6ece085319c1e1ebabe429b51bf725c682f1fc178bea47e215a90aa6495359218d9e5608dad5ad6a56f4b7de6abe3c1c96646fc2380684d546258345104a87c3e2bbb66aa406d5a9f5a364dd332cdea6bbec70c295e73d22dce93ff84ba2b0f94d67b20c29170333cea0561af7d5e84f66195407da9fec24e811b5f3430ebf8de0c44b67f51200481cfcaef157590da38806b463e5582f478e0102a3cb4889a01008b87d17af4f56a0b910098033f843d5d9d7f6aa10f021c1dbe2d678b87983c6e4ba575934752b16428f4a7377f58c81e3c7958f4250c8ae3e303e815854b1475d46c94b07be21369d5c1d088b50303faf4838790814fbf29574c74a860f04158b619b822a9bb6487c6190ceb61cc8d551651cf4cd1730f655903e43779f8f65e6a1483d3058282edfda21c022bc0799185e2c24342c61d78dfb3a34264b601521074488f78872752b187cbce2fc7d4168cf76b096521c890f82dcaf6bdd2e59614507381fd4088ab45acac0d505fb46e3dc7cbcce7e29aabdb6fb0dd51cf9ab3988f60219008b1f4517b00156048fcf467c0a3f51bde284ebe0e5edfa7b33da1274598f11e364e3610672cf47b17b4855a8` | 交易私钥 | 配置为实际的私钥（注意安全） |
+| `USERID` | string | `abe3238c46312425ffffd1250f3a7024ff31ad8d15fc6eeb5ad38962115640e59e94e8da112a82192d90e66539eea6427c9fb052b27ae534c8f2835b8d9c12adc1ac` | 用户 ID | 配置为实际的用户标识 |
+
 
 ### 6. 服务镜像配置
 
 | 字段名 | 类型 | 默认值 | 说明 | 配置建议 |
 |--------|------|--------|------|----------|
-| `ETHERMINT_IMAGE` | string | `ghcr.io/qday-io/qday-abel-bridge-committer:sha-3943796` | Committer 服务镜像 | 使用官方推荐镜像版本 |
+| `ETHERMINT_IMAGE` | string | `ghcr.io/qday-io/qday-abel-bridge-committer:20250702-113415-6c3a043` | Committer 服务镜像 | 使用官方推荐镜像版本 |
 
-## 配置注意事项
 
-1. **安全性**：包含私钥、密码等敏感信息的字段需要妥善保管，建议使用环境变量或密钥管理服务。
+参考案例：
 
-2. **网络配置**：确保所有 RPC 地址、API 地址等网络配置正确且可访问。
-
-3. **区块链配置**：根据实际部署的区块链网络调整相关配置。
-
-4. **私钥管理**：`B2NODE_PRIVATE_KEY` 和 `PRIVATE_KEY` 等敏感信息应妥善保管，避免泄露。
-
-5. **环境区分**：测试环境和生产环境应使用不同的配置值。
-
-6. **镜像版本**：建议使用稳定的镜像版本，避免使用 latest 标签。
-
-## 配置示例
-
-```bash
-# 生产环境配置示例
-RPC_URL=https://polygon-mainnet-rpc.com
-BLOCKCHAIN=polygon
-INIT_BLOCK_NUMBER=50000000
-B2NODE_CHAIN_ID=137
-B2NODE_GRPC_HOST=your-b2node-server.com
-ENDPOINT=https://your-api-server.com
-```
-
-## 数据库配置
-
-Committer 服务使用 MySQL 数据库，相关配置在 `docker-compose.yml` 中定义：
-
-- 数据库：`abe_committer`
-- 用户名：`root`
-- 密码：`root`
-- 端口：`3366`
-
-数据库初始化脚本为 `mysql.sql`，包含以下主要表：
-- `rollbacks`：回滚记录表
-- `sync_blocks`：区块同步表
-- `sync_events`：事件同步表
-- `sync_tasks`：同步任务表
-- `proposal`：提案表
+ETHERMINT_IMAGE=ghcr.io/qday-io/qday-abel-bridge-committer:20250702-113415-6c3a043
+RPC_URL=http://190.92.213.101:8545
+BLOCKCHAIN=da-node
+INIT_BLOCK_NUMBER=1
+INIT_BLOCK_HASH=0x1db9fbef276c30cc9fdfba2a21d7cc4dd760fd2e76b8906571c6f56a706624bc
+POLYGON_ZKEVM_ADDRESS=0x59C123c2901245F3A38E009Eb341d34CC4609a8E
+PROPOSAL_BATCHES_LIMITNUM=2
+INIT_PROPOSAL_ID=1
+B2NODE_PRIVATE_KEY=2ee789a68207020b45607f5adb71933de0946baebbaaab74af7cbd69c8a90573
+B2NODE_ADDRESS=ethm17nhkv58y35ye5jtjafd5zndtsmsenz7nlxh60c
+B2NODE_CHAIN_ID=ethermint_9000-1
+B2NODE_GRPC_HOST=190.92.213.101
+B2NODE_GRPC_PORT=9090
+B2NODE_RPC_URL=http://190.92.213.101:9090
+B2NODE_COIN_DENOM=aphoton
+ENDPOINT=https://testnet-snode.pqabelian.io/v1/single-account
+RPCENDPOINT=https://testnet-rpc-00.pqabelian.io
+USERNAME=J8y0OnkS2wx9XEgUlW5MqtoRDAQ=
+PASSWORD=ULlXc/ZMJ375cn6VuSbtU+Y3KGQ=
+AUTHTOKEN=cce71078669ded3517d961a2d57eb440
+APPID=cce71078
+REQUEST_SIGNATURE=0x338i3jejjd
+USERID=abe3238c46312425ffffd1250f3a7024ff31ad8d15fc6eeb5ad38962115640e59e94e8da112a82192d90e66539eea6427c9fb052b27ae534c8f2835b8d9c12adc1ac
+FROM=abe3238c46312425ffffd1250f3a7024ff31ad8d15fc6eeb5ad38962115640e59e94e8da112a82192d90e66539eea6427c9fb052b27ae534c8f2835b8d9c12adc1ac
+RECIPIENT=abe338491ef250a530f6b1a771d45ae168f81d6a430f20623849e448b870f0f95e13f12ba51bff83497480db944567750e3cf555cd9811db95b848ca93d45c1448d0
+PRIVATE_KEY=000000009efa88a8019f647299217d808c652b96c28f7fe8887830fdc8b1803002806a61e61fa689e9f4c99340336d3ea6904053026e3f15eebf09bcd36c85f9fbc186bf74023558625a2672f53602aee7a2d359cad4a451e1e047f3873750e3b59f32ca7a45e864473454f23b675e23f8e24c55323245d12f7516653119a92b0fc4cf387a6948f261dda683c2e56b1c1a0b85509663dfcdac87461fbce44a80530339debd2b6e62d3324909f7643281b4b75b1fdadc398d2801512b0b537c33a99ab1e1e1d7e336d694175dcf9d924cd2402f7b2b168d8dca557ce6b0371d281085fe8a8ebf5a643fda56b47dd057f4710150310f03b26f5d6c48860890790c4ef5978f0378a23192feb2d0527e73813281999ebf25e7aed1d1e8187fff36d9cfd614e2047b94b2e68b8894d4d0ad482a12b93991465d73c0294d9d1cdb7e9fa20df4169aa1a006ce6e39491c0913c6e50654be0bdccb619d07b4b4b0fe323458baafbcc7460676c497cc51d08fb36fb76260615acbab8d27e307c650ae127ac42e7be4c5439af88c8b8197b3726dc4b2a377db6160186c1481f79395fc82931d556678a02f6420534f38cbd7a0a4a1eea83f1e20fd87918b8f54cc2978681c57a6c9f3a445b29483141bfdc4e29c399a907bb8c41cf4e83e9cb6e508de65511a631e51c00f87ce8155439dd1361a5f78836befaa9f345386f75b941f14812894cb8c059bed886d5f7909ca8e60441986cb84262dd1f67bd7ac633c0ce3b267334931f3e8a03acc84e574c6443b6f7b84dcb5c82921be7e9fa2e26f78a39f2e11a6d27d900c37fcac2d23952da734a907bf07bf66c0c4d4231e857f3ba2b7c5c63664052c1597658f919759e557fd6ade6ece085319c1e1ebabe429b51bf725c682f1fc178bea47e215a90aa6495359218d9e5608dad5ad6a56f4b7de6abe3c1c96646fc2380684d546258345104a87c3e2bbb66aa406d5a9f5a364dd332cdea6bbec70c295e73d22dce93ff84ba2b0f94d67b20c29170333cea0561af7d5e84f66195407da9fec24e811b5f3430ebf8de0c44b67f51200481cfcaef157590da38806b463e5582f478e0102a3cb4889a01008b87d17af4f56a0b910098033f843d5d9d7f6aa10f021c1dbe2d678b87983c6e4ba575934752b16428f4a7377f58c81e3c7958f4250c8ae3e303e815854b1475d46c94b07be21369d5c1d088b50303faf4838790814fbf29574c74a860f04158b619b822a9bb6487c6190ceb61cc8d551651cf4cd1730f655903e43779f8f65e6a1483d3058282edfda21c022bc0799185e2c24342c61d78dfb3a34264b601521074488f78872752b187cbce2fc7d4168cf76b096521c890f82dcaf6bdd2e59614507381fd4088ab45acac0d505fb46e3dc7cbcce7e29aabdb6fb0dd51cf9ab3988f60219008b1f4517b00156048fcf467c0a3f51bde284ebe0e5edfa7b33da1274598f11e364e3610672cf47b17b4855a8
