@@ -228,6 +228,13 @@ ProfilingPort = 6060
 ProfilingEnabled = false
 ```
 
+1. >IsTrustedSequencer = false  it is false if this is rpc node
+
+2. >Etherman.URL   json rpc of da node
+
+3. >MTClient.URI     zkevm-prover service of main node
+
+4. >Executor.URI   zkevm-prover service of main node 
 ---
 
 - ### rpc1.prover.config.json

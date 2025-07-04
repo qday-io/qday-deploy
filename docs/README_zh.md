@@ -114,6 +114,7 @@ cp temp_keystore/2.keystore data/keystore/aggregator.keystore
 
 ## 6. 检查PRC节点
 
+- vertify main node
 ```
 curl http://localhost:8123 \
   -X POST \
@@ -126,6 +127,18 @@ curl http://localhost:8123 \
   {"jsonrpc":"2.0","id":1,"result":"0x3e9"}
 ```
 
+- vertify da node 
+```
+curl http://localhost:8545 \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc": "2.0", "method": "eth_chainId", "params": [], "id": 1}'
+```
+
+正常响应：
+```
+  {"jsonrpc":"2.0","id":1,"result":"0x2328"}
+```
 ## 7. 部署wAbel 合约
 
 - 克隆 https://github.com/qday-io/qday-contracts.git 并切换到release 分支

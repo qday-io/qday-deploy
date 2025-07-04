@@ -60,11 +60,25 @@ main node config 配置参数详细说明
 
 1. > You can initialize EOA accounts with a starting balance by adding them to the `genesis` array. For EOA, only `accountName`, `balance`, `nonce`, and `address` are required. The `balance` is specified in wei.
 
-2. >l1Config2.`chainId` Keep it the same，
+2. > l1Config2.chainId should be kept the same. If you need to change it, make sure it matches the DA node configuration.
 3. >l1Config2 other fields from deploy_output.json from DA node of build
-4. >`genesisBlockNumber` from deploy_output.json
+4. >`genesisBlockNumber` from deploymentBlockNumber of deploy_output.json
 5. >`root` If you change genesis, root will automatically change
-6. >You can also initialize accounts in the genesis block
+6. >You can also initialize accounts in the genesis block,like this 
+
+    ```jsonc
+        {
+          // Account name or description
+          "accountName": "user1",
+          // Initial balance in wei (e.g., 1 ETH = 1e18 wei)
+          "balance": "1000000000000000000", // 1 ETH
+          // Initial nonce
+          "nonce": "0",
+          // EOA address
+          "address": "0x1234567890abcdef1234567890abcdef12345678"
+          // No bytecode or storage for EOA
+        }
+    ```
 
 
 ---
@@ -127,6 +141,13 @@ Outputs = ["stderr"]
 
 # ...（其余字段同理，建议只保留一部分示例，或如需全部字段注释请告知）
 ```
+1. > IsTrustedSequencer   仅可信节点值true,其他false
+2. >Etherman.URL  the URL of  json rpc of da node
+3. >SequenceSender.PrivateKey   sequencer.keystore
+4. >SequenceSender.L2Coinbase   address of sequencer.keystore
+5. >Aggregator.SenderAddress    address of aggregator.keystore
+
+
 ---
 - ### test.prover.config.json
 
@@ -158,3 +179,5 @@ Outputs = ["stderr"]
   // ...（其余字段同理，建议只保留一部分示例，或如需全部字段注释请告知）
 }
 ```
+
+**It is recommended to keep it unchanged. If you need to make changes, please ensure that all dependent services are updated accordingly.**
