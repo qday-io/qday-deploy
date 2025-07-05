@@ -30,7 +30,6 @@ This document details the meaning, type, default value, and configuration sugges
 | `B2NODE_CHAIN_ID`    | int/string| `ethermint_9000-1`                                 | B2Node chain ID            | Set according to the actual network         |
 | `B2NODE_GRPC_HOST`   | string    | `190.92.213.101`                                  | B2Node gRPC host address   | Set to the actual gRPC service address      |
 | `B2NODE_GRPC_PORT`   | int       | `9090`                                            | B2Node gRPC port           | Set to the actual gRPC port                 |
-| `B2NODE_RPC_URL`     | string    | `http://190.92.213.101:8545`                      | B2Node RPC URL             | Set to the actual RPC address               |
 | `B2NODE_COIN_DENOM`  | string    | `aphoton`                                         | B2Node coin symbol         | Set to the actual coin symbol               |
 
 - Build for B2NODE_ADDRESS
@@ -91,7 +90,6 @@ B2NODE_ADDRESS=ethm17nhkv58y35ye5jtjafd5zndtsmsenz7nlxh60c
 B2NODE_CHAIN_ID=ethermint_9000-1
 B2NODE_GRPC_HOST=190.92.213.101
 B2NODE_GRPC_PORT=9090
-B2NODE_RPC_URL=http://190.92.213.101:8545
 B2NODE_COIN_DENOM=aphoton
 ENDPOINT=https://testnet-snode.pqabelian.io/v1/single-account
 RPCENDPOINT=https://testnet-rpc-00.pqabelian.io
