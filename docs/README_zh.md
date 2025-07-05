@@ -114,7 +114,7 @@ cp temp_keystore/2.keystore data/keystore/aggregator.keystore
 
 ## 6. 检查PRC节点
 
-- vertify main node
+- Verify main node
 ```
 curl http://localhost:8123 \
   -X POST \
@@ -127,7 +127,7 @@ curl http://localhost:8123 \
   {"jsonrpc":"2.0","id":1,"result":"0x3e9"}
 ```
 
-- vertify da node 
+- Verify da node 
 ```
 curl http://localhost:8545 \
   -X POST \
@@ -139,109 +139,8 @@ curl http://localhost:8545 \
 ```
   {"jsonrpc":"2.0","id":1,"result":"0x2328"}
 ```
-## 7. 部署wAbel 合约
 
-- 克隆 https://github.com/qday-io/qday-contracts.git 并切换到release 分支
-- 安装必要依赖和工具
-
-```
-# 安装 Rust（如果还没有安装）
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-source ~/.cargo/env
-
-# 安装 Foundry
-cargo install --git https://github.com/foundry-rs/foundry.git foundry-cli anvil --bins --locked
-```
-
-- 创建.env and update
-
-```
- cp env-example .env
-```
-
-- run shell
-
-```jsonc
-
-Usage: ./deploy.sh [OPTIONS]
-
-Options:
-  -l, --local     部署到本地网络 (需要先启动 anvil)
-  -m, --mainnet   部署到 Ethereum 主网（对我们即是QDay）
-  -s, --simulate  模拟部署 (不发送交易)
-  -v, --verify    部署后验证合约 (仅主网)
-  -h, --help      显示此帮助信息
-
-Examples:
-  ./deploy.sh --local                    # 本地部署
-  ./deploy.sh --mainnet                  # 主网部署
-  ./deploy.sh --simulate                 # 模拟部署
-  ./deploy.sh --mainnet --verify         # 主网部署并验证
-
-Environment Variables:
-  PRIVATE_KEY     部署者私钥 (必需)
-  ETH_RPC_URL     Ethereum RPC URL (主网部署时必需)
-  ETHERSCAN_API_KEY Etherscan API Key (验证时必需)
-```
-
-- out.txt
-
- 1. 部署过程中信息 如错误信息等
- 2. 部署结果信息，如合约地址，网络信息等
-
-
-## 8.部署 indexer
-
-**切换到 indexer 目录**
-
-### 1. 目录结构
-
-- `docker-compose.yml`：服务编排文件，定义了 indexer 及其依赖数据库。
-- `env-example`：环境变量模板，部署前请复制为 `.env` 并根据实际情况修改。
-- `abi.json`：合约 ABI 文件，供 indexer 服务使用。
-
-### 2. 依赖环境
-
-- Docker 及 Docker Compose
-- 推荐主机内存 ≥ 2GB
-
-### 3. 环境变量配置
-
-将 `env-example` 复制为 `.env` 并根据实际需求修改。主要变量说明：
-- `INDEXER_DATABASE_SOURCE`：Postgres 数据库连接串，默认已指向本 compose 内的 pg 服务。
-- `BITCOIN_*`、`BITCOIN_BRIDGE_*`：比特币网络、桥接合约等相关配置。
-- 其余参数请参考 `env-example` 注释。
-
-### 4. 数据卷说明
-
-- `./db/postgres/datadir`：Postgres 数据持久化目录。
-- `./abi.json`：合约 ABI 文件，需与 indexer 镜像内 `/app/abi.json` 映射。
-- `./.env`：环境变量文件，需与 indexer 镜像内 `/app/.env` 映射。
-
-### 5. 端口映射
-
-- `5432:5432`：Postgres 数据库服务端口
-- `9090:9090`、`9091:9091`：indexer 服务端口
-
-### 6. 启动服务
-
-在 `indexer` 目录下执行：
-
-```bash
-cp env-example .env
-# 如有初始化 SQL，可放入 docker-entrypoint-initdb.d 目录
-
-docker-compose up -d
-```
-
-### 7. 检查
-？？
-
-
-**详细配置 [indexer-config.md](./step-by-step/indexer-config.md)**
-
-
-## 9. 部署 committer
+## 7. 部署 committer
 
 **切换到 committer 目录**
 
