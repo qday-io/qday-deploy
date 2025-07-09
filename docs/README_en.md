@@ -154,7 +154,7 @@ docker-compose up -d
 
 **Detailed configuration [committer-config.md](./step-by-step/committer-config.md)** 
 
-## 7. Check RPC Node
+## 7. Check RPC Node and Rollup
 
 - Verify main node
 ```
@@ -182,10 +182,10 @@ Expected response:
   {"jsonrpc":"2.0","id":1,"result":"0x2328"}
 ```
 
-- Metamask import account
+- Verify Rollup
 
-1. Import qday network
-2. Import account: aea0e727a9a1b1dd50df66ed47b8cf1925ba5a0d67f785349a29ec304320396d 
-3. Check this account (0xD47dac7F1916054A7223A2E63C00635a64fa93A7) balance: 210000000000000000000000000
-4. Use this account to **initiate multiple transactions**
-5. Use tools/batch tool to verify rollup is working normally (may need to wait 3~12 minutes)
+> 1. Import qday network to Metamask
+> 2. Import account: aea0e727a9a1b1dd50df66ed47b8cf1925ba5a0d67f785349a29ec304320396d
+> 3. Check this account (0xD47dac7F1916054A7223A2E63C00635a64fa93A7) balance: 210000000000000000000000000
+> 4. Use this account to **initiate multiple transactions**
+> 5. Use tools/batch tool to verify rollup is working normally (may need to wait 3~12 minutes)

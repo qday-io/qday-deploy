@@ -188,11 +188,11 @@ curl http://localhost:8545 \
   {"jsonrpc":"2.0","id":1,"result":"0x2328"}
 ```
 
-- Metamask 导入账户
+- Verify Rollup 
 
-1. 导入qday 网络
-2. 导入帐号：aea0e727a9a1b1dd50df66ed47b8cf1925ba5a0d67f785349a29ec304320396d 
-3. 查阅此帐号(0xD47dac7F1916054A7223A2E63C00635a64fa93A7)余额： 210000000000000000000000000
-4. 使用此帐号,**发起多笔交易**
-5. 使用 tools/batch 工具验证rollup 正常（可能需要等待 3～12分钟）
+> 1. 导入qday 网络到Metamask
+> 2. 导入帐号：aea0e727a9a1b1dd50df66ed47b8cf1925ba5a0d67f785349a29ec304320396d 
+> 3. 查阅此帐号(0xD47dac7F1916054A7223A2E63C00635a64fa93A7)余额： 210000000000000000000000000
+> 4. 使用此帐号,**发起多笔交易**
+> 5. 使用 tools/batch 工具验证rollup 正常（可能需要等待 3～12分钟）
 
