@@ -107,35 +107,8 @@ cp temp_keystore/2.keystore data/keystore/aggregator.keystore
 
 > If you need to reinitialize, the system will automatically update if root verification fails
 
-## 6. Check RPC Node
 
-- Verify main node
-```
-curl http://localhost:8123 \
-  -X POST \
-  -H "Content-Type: application/json" \
-  -d '{"jsonrpc": "2.0", "method": "eth_chainId", "params": [], "id": 1}'
-```
-
-Expected response:
-```
-  {"jsonrpc":"2.0","id":1,"result":"0x3e9"}
-```
-
-- Verify da node 
-```
-curl http://localhost:8545 \
-  -X POST \
-  -H "Content-Type: application/json" \
-  -d '{"jsonrpc": "2.0", "method": "eth_chainId", "params": [], "id": 1}'
-```
-
-Expected response:
-```
-  {"jsonrpc":"2.0","id":1,"result":"0x2328"}
-```
-
-## 7. Deploy committer
+## 6. Deploy committer
 
 **Switch to the committer directory**
 
@@ -180,3 +153,39 @@ docker-compose up -d
 ??
 
 **Detailed configuration [committer-config.md](./step-by-step/committer-config.md)** 
+
+## 7. Check RPC Node
+
+- Verify main node
+```
+curl http://localhost:8123 \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc": "2.0", "method": "eth_chainId", "params": [], "id": 1}'
+```
+
+Expected response:
+```
+  {"jsonrpc":"2.0","id":1,"result":"0x3e9"}
+```
+
+- Verify da node 
+```
+curl http://localhost:8545 \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc": "2.0", "method": "eth_chainId", "params": [], "id": 1}'
+```
+
+Expected response:
+```
+  {"jsonrpc":"2.0","id":1,"result":"0x2328"}
+```
+
+- Metamask import account
+
+1. Import qday network
+2. Import account: aea0e727a9a1b1dd50df66ed47b8cf1925ba5a0d67f785349a29ec304320396d 
+3. Check this account (0xD47dac7F1916054A7223A2E63C00635a64fa93A7) balance: 210000000000000000000000000
+4. Use this account to **initiate multiple transactions**
+5. Use tools/batch tool to verify rollup is working normally (may need to wait 3~12 minutes)
