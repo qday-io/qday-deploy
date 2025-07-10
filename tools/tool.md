@@ -18,6 +18,60 @@ tools/
 └── tool.md                  # 本说明文档
 ```
 
+**项目根目录**:
+```
+qday-deploy/
+├── install.sh               # 项目环境安装脚本
+├── package.json             # Node.js 项目依赖配置
+└── tools/                   # 工具目录
+```
+
+## 环境安装
+
+### install.sh
+**功能**: 自动化项目环境安装脚本，用于检查和安装必要的依赖环境。
+
+**使用方法**:
+```bash
+# 在项目根目录执行
+./install.sh
+```
+
+**功能说明**:
+1. **Node.js 检查与安装**:
+   - 自动检测系统是否已安装 Node.js
+   - 支持多种包管理器自动安装:
+     - `apt-get` (Ubuntu/Debian)
+     - `yum` (CentOS/RHEL)
+     - `brew` (macOS)
+   - 显示已安装的 Node.js 版本
+
+2. **npm 检查**:
+   - 验证 npm 是否可用
+   - 如果 npm 不可用，提示检查 Node.js 安装
+
+3. **依赖安装**:
+   - 根据项目根目录的 `package.json` 文件安装 Node.js 依赖
+   - 自动执行 `npm install` 命令
+
+**支持的操作系统**:
+- Ubuntu/Debian (使用 apt-get)
+- CentOS/RHEL (使用 yum)
+- macOS (使用 Homebrew)
+- 其他系统 (提示手动安装)
+
+**前置条件**:
+- 需要 sudo 权限 (用于包管理器安装)
+- 项目根目录需要存在 `package.json` 文件
+
+**示例输出**:
+```bash
+$ ./install.sh
+Node.js 已安装，版本: v16.15.0
+npm install
+added 156 packages, and audited 157 packages in 1s
+```
+
 ## 工具详细说明
 
 ### 1. 密钥库生成工具
@@ -206,7 +260,13 @@ committerdb:
 
 ## 使用流程示例
 
-### 1. 初始化密钥库
+### 1. 环境安装
+```bash
+# 在项目根目录执行安装脚本
+./install.sh
+```
+
+### 2. 初始化密钥库
 ```bash
 # 1. 在项目根目录创建 .env 文件
 echo "MNEMONIC=your twelve word mnemonic phrase here" > .env
@@ -216,13 +276,13 @@ cd tools
 ./gen-keystore.sh
 ```
 
-### 2. 解密密钥库文件
+### 3. 解密密钥库文件
 ```bash
 # 解密特定角色的密钥库
 node keystore-decrypt.js temp_keystore/0.keystore testonly
 ```
 
-### 3. 发送测试交易
+### 4. 发送测试交易
 ```bash
 # 发送单笔交易
 node send-tx.js
@@ -231,7 +291,7 @@ node send-tx.js
 node send-tx-loop.js
 ```
 
-### 4. 使用批处理工具
+### 5. 使用批处理工具
 ```bash
 # 根据操作系统选择对应工具，处理特定 hash
 ./batch/batch-util-mac -hash=0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef    # macOS
@@ -260,6 +320,7 @@ node send-tx-loop.js
 5. **权限设置**:
    - 确保脚本文件有执行权限
    - Linux/macOS: `chmod +x gen-keystore.sh`
+   - 安装脚本: `chmod +x install.sh`
 
 ## 故障排除
 
