@@ -1,20 +1,18 @@
-statedb:
+StateDB:
   host: "13.54.171.239"
   port: 5432
   user: "state_user"
   password: "state_password"
   dbname: "state_db"
-  sslmode: "disable"
-
-committerdb:
+CommitterDB:
   host: "13.54.171.239"
   port: 3366
   user: "root"
   password: "root"
   dbname: "abe_committer"
 
-B2NODE_CHAIN_ID: "ethermint_9000-1"
-B2NODE_GRPC_HOST: "13.54.171.239"
-B2NODE_GRPC_PORT: 9090
+DaNodeChainID: "ethermint_9000-1"
+DaNodeGRPCHost: "13.54.171.239"
+DaNodeGRPCPort: 9090
 AbelFrom: "abe3238c46312425ffffd1250f3a7024ff31ad8d15fc6eeb5ad38962115640e59e94e8da112a82192d90e66539eea6427c9fb052b27ae534c8f2835b8d9c12adc1ac"
 
