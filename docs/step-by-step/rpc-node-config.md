@@ -235,6 +235,10 @@ ProfilingEnabled = false
 3. >MTClient.URI     zkevm-prover service of main node
 
 4. >Executor.URI   zkevm-prover service of main node 
+
+5. >Synchronizer.TrustedSequencerURL (Not on the same server as the main node) This needs to be executed on the main node server. The default port is 8123, for example: http://190.92.213.101:8123
+6. >RPC.SequencerNodeURI    (Not on the same server as the main node) This needs to be executed on the main node server. The default port is 8123, for example: http://190.92.213.101:8123
+
 ---
 
 - ### rpc1.prover.config.json
