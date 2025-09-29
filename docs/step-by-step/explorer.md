@@ -81,7 +81,7 @@ services:
     image: explorer-frontend:local
     platform: linux/amd64
     restart: always
-    container_name: 'frontend'
+    container_name: explorer-frontend
     network_mode: host
     env_file:
       - .env
@@ -116,20 +116,6 @@ $ docker compose up -d
 ## NGINX
 
 ```bash
-$ mkdir -p ~/deploy/nginx/templates/
-$ cd ~/deploy/nginx
-
-$ vim compose.yml
-services:
-
-  nginx:
-    image: nginx:alpine
-    container_name: nginx
-    network_mode: host
-    restart: always
-    volumes:
-     - ./templates:/etc/nginx/templates:ro
-
 $ vim templates/explorer.conf.template
 server {
     listen 80;
@@ -162,8 +148,6 @@ server {
         proxy_set_header X-NginX-Proxy true;
     }
 }
-
-$ docker compose up -d
 ```
 
 Open your browser to https://explorer.qday.info and you will see the Blockscout explorer.
