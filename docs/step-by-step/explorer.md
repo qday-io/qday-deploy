@@ -46,7 +46,7 @@ $ vim services/backend.yml
 $ vim services/nginx.yml
       FRONT_PROXY_PASS: ${FRONT_PROXY_PASS:-http://frontend:3000}
       # Change to
-      FRONT_PROXY_PASS: ${FRONT_PROXY_PASS:-http://IP:3000}
+      FRONT_PROXY_PASS: ${FRONT_PROXY_PASS:-http://FRONTEND_HOSTNAME:3000}
 ...
       - target: 80
         published: 80
