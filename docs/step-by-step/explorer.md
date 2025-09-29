@@ -59,6 +59,7 @@ docker compose up -d
 
 > services/backend.yml blockscout version latest change to 6.9.2
 > services/stats.yml stats version latest change to v2.3.0
+> Change envs/common-blockscout.env --> INDEXER_DISABLE_INTERNAL_TRANSACTIONS_FETCHER=true
 
 ## Blockscout Frontend
 
