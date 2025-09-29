@@ -29,7 +29,7 @@ $ vim docker-compose.yml
 $ vim envs/common-blockscout.env
 ETHEREUM_JSONRPC_HTTP_URL=https://rpc-0.qday.info
 ETHEREUM_JSONRPC_TRACE_URL=https://rpc-0.qday.info
-SUBNETWORK=QDay Testnet
+SUBNETWORK=QDay
 CHAIN_ID=44003
 
 $ vim proxy/default.conf.template
