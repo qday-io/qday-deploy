@@ -107,8 +107,11 @@ cp temp_keystore/2.keystore data/keystore/aggregator.keystore
 
 > If you need to reinitialize, the system will automatically update if root verification fails
 
+## 6. Explorer
 
-## 6. Deploy committer
+[QDay Explorer Deploy](./step-by-step/explorer.md)
+
+## 7. Deploy committer
 
 **Switch to the committer directory**
 
@@ -154,7 +157,7 @@ docker-compose up -d
 
 **Detailed configuration [committer-config.md](./step-by-step/committer-config.md)** 
 
-## 7. Check RPC Node and Rollup
+## 8. Check RPC Node and Rollup
 
 - Verify main node
 ```
