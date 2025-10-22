@@ -68,21 +68,14 @@ docker compose up -d
 ## Blockscout Frontend
 
 ```bash
-cd ~/deploy
-git clone https://github.com/qday-io/qday-explorer-frontend.git explorer-frontend
-cd explorer-frontend
-
-docker build \
-  --build-arg GIT_COMMIT_SHA=$(git rev-parse --short HEAD) \
-  --build-arg GIT_TAG=$(git describe --tags --abbrev=0) \
-  -t explorer-frontend:local \
-  ./
+mkdir -p ~/deploy/explorer-frontend
+cd ~/deploy/explorer-frontend
 
 $ vim compose.yml
 services:
 
-  frontend:
-    image: explorer-frontend:local
+  explorer-frontend:
+    image: qday-io/explorer-frontend:local
     platform: linux/amd64
     restart: always
     container_name: explorer-frontend
