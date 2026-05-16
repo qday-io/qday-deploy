@@ -1,14 +1,18 @@
-# QDAY zkEVM Deploy
+# QDAY Deploy
+
+## Prerequisites
+
+Review [docs/step-by-step/Prerequisites.md](docs/step-by-step/Prerequisites.md) before deploying: supported OS and hardware (including AMD64), how full proving differs from **mock proving** resource-wise, software expectations, and mock-prover sizing. For a guided setup (including installing Node.js dependencies such as `ethers`), follow the **[step-by-step guide](docs/README_en.md)** starting at sections 1–2.
 
 ## Usage
 
-Run the node, which includes the DA node and the QDAY node.
+Run the node stack (includes the DA node and the QDAY node).
 
 ```bash
 make run
 ```
 
-Run the explorer for DA and QDAY.
+Run explorers for DA and QDAY.
 
 ```bash
 make run-explorer-db run-explorer
@@ -20,26 +24,28 @@ Stop the node and explorer.
 make stop
 ```
 
-Stop and clean the data.
+Stop services and wipe local data.
 
 ```bash
 make clean
 ```
 
-## 单独启动 L1 网络
+## DA node (L1) only
 
 ```sh
 make da-node
 ```
 
-该命令会只启动 L1 网络服务。
+This starts only the L1 (DA) network services.
 
-停止 L1 网络：
+Stop the DA / L1 node:
+
 ```sh
 make stop-da-node
 ```
 
-重启 L1 网络：
+Restart the DA / L1 node:
+
 ```sh
 make restart-da-node
 ```
@@ -50,7 +56,8 @@ make restart-da-node
 make main-node
 ```
 
-停止全节点：
+Stop the main node:
+
 ```sh
 make stop-main-node
 ```
@@ -61,76 +68,88 @@ make stop-main-node
 make rpc-node
 ```
 
-该命令会启动 prover、pool-db、state-db、sync、json-rpc。
+This starts `prover`, `pool-db`, `state-db`, `sync`, and `json-rpc`.
 
-停止 RPC 节点：
+Stop the RPC node:
+
 ```sh
 make stop-rpc-node
 ```
 
-重启 RPC 节点：
+Restart the RPC node:
+
 ```sh
 make restart-rpc-node
 ```
 
-## 双 RPC 节点
+## Dual RPC nodes
 
-### RPC 节点 1
+### RPC node 1
 
-启动第一个 RPC 节点：
+Start the first RPC node:
+
 ```sh
 make rpc-node-1
 ```
 
-该命令会启动 prover、pool-db、state-db、event-db、json-rpc，使用端口 8123。
+This starts `prover`, `pool-db`, `state-db`, `event-db`, and `json-rpc` on port **8123**.
 
-停止第一个 RPC 节点：
+Stop the first RPC node:
+
 ```sh
 make stop-rpc-node-1
 ```
 
-重启第一个 RPC 节点：
+Restart the first RPC node:
+
 ```sh
 make restart-rpc-node-1
 ```
 
-### RPC 节点 2
+### RPC node 2
 
-启动第二个 RPC 节点：
+Start the second RPC node:
+
 ```sh
 make rpc-node-2
 ```
 
-该命令会启动 prover、pool-db、state-db、event-db、json-rpc，使用端口 8125。
+This starts `prover`, `pool-db`, `state-db`, `event-db`, and `json-rpc` on port **8125**.
 
-停止第二个 RPC 节点：
+Stop the second RPC node:
+
 ```sh
 make stop-rpc-node-2
 ```
 
-重启第二个 RPC 节点：
+Restart the second RPC node:
+
 ```sh
 make restart-rpc-node-2
 ```
 
-### 同时管理两个 RPC 节点
+### Run both RPC nodes
 
-同时启动两个 RPC 节点：
+Start both:
+
 ```sh
 make rpc-nodes
 ```
 
-同时停止两个 RPC 节点：
+Stop both:
+
 ```sh
 make stop-rpc-nodes
 ```
 
-同时重启两个 RPC 节点：
+Restart both:
+
 ```sh
 make restart-rpc-nodes
 ```
 
-测试两个 RPC 节点的连接性：
+Connectivity check for both:
+
 ```sh
 make test-rpc-nodes
 ```
@@ -147,7 +166,7 @@ Currency Symbol (optional): (accept default)
 Explorer: http://localhost:4000
 ```
 
-### Add Qday network
+### Add QDay network
 
 ```txt
 Network Name: QDay - local
@@ -157,7 +176,7 @@ Currency Symbol (optional): QDAY
 Explorer: http://localhost:4001
 ```
 
-### Add Qday network (RPC 2)
+### Add QDay network (RPC node 2)
 
 ```txt
 Network Name: QDay - local 2
@@ -175,10 +194,11 @@ Default mnemonic:
 test test test test test test test test test test test zero
 ```
 
-Please use the account with path `m/44'/60'/0'/0/0` for DA and QDAY.
+Use the account at derivation path `m/44'/60'/0'/0/0` for DA and QDay.
 
-## Other documents
+## Documentation
 
-- [PostgreSQL Replication on Docker Compose](docs/postgres.md)
-- [Step-by-step guide](docs/step-by-step/README.md)
-- [双 RPC 节点使用指南](docs/rpc-nodes-usage.md)
+- [Step-by-step guide](docs/README_en.md)
+- [PostgreSQL replication (Docker Compose)](docs/postgres.md)
+
+Chinese guide: [`docs/README_zh.md`](docs/README_zh.md).

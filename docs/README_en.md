@@ -3,6 +3,10 @@
 <strong>Note:</strong>
 1. Chain operators (Operator) need to perform all steps, while validators (Validator) only need to perform step 4.
 
+## Prerequisites
+
+Read [step-by-step/Prerequisites.md](./step-by-step/Prerequisites.md) first for supported OS/hardware, computing resources (full prover vs mock prover), software expectations, and mock prover sizing. Dependency installation commands appear in step 2 below.
+
 ## 1. Compile DA Node
 - Clone https://github.com/qday-io/qday-zkevm-contracts.git and switch to the release branch
 - Required environment and tools: docker, docker compose, wget, jq
