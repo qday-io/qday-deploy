@@ -4,6 +4,9 @@
 <strong>注意：</strong>
 1. 链的运营者（Operator）需要执行全部流程,验证者（Validator）仅需要执行第4步。
 
+## 前置条件
+
+请先阅读 [step-by-step/Prerequisites.md](./step-by-step/Prerequisites.md)，了解支持的系统与硬件、算力预期（完整 prover 与 mock prover）、软件要求以及 mock prover 资源说明。依赖安装命令见下文第 2 步。
 
 ## 1. 编译DA Node
 - 克隆 https://github.com/qday-io/qday-zkevm-contracts.git 并切换到 release 分支

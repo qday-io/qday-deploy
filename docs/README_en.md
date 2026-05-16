@@ -3,6 +3,10 @@
 <strong>Note:</strong>
 1. Chain operators (Operator) need to perform all steps, while validators (Validator) only need to perform step 4.
 
+## Prerequisites
+
+Read [step-by-step/Prerequisites.md](./step-by-step/Prerequisites.md) first for supported OS/hardware, computing resources (full prover vs mock prover), software expectations, and mock prover sizing. Dependency installation commands appear in step 2 below.
+
 ## 1. Compile DA Node
 - Clone https://github.com/qday-io/qday-zkevm-contracts.git and switch to the release branch
 - Required environment and tools: docker, docker compose, wget, jq
@@ -107,8 +111,11 @@ cp temp_keystore/2.keystore data/keystore/aggregator.keystore
 
 > If you need to reinitialize, the system will automatically update if root verification fails
 
+## 6. Explorer
 
-## 6. Deploy committer
+[QDay Explorer Deploy](./step-by-step/explorer.md)
+
+## 7. Deploy committer
 
 **Switch to the committer directory**
 
@@ -154,7 +161,7 @@ docker-compose up -d
 
 **Detailed configuration [committer-config.md](./step-by-step/committer-config.md)** 
 
-## 7. Check RPC Node and Rollup
+## 8. Check RPC Node and Rollup
 
 - Verify main node
 ```
